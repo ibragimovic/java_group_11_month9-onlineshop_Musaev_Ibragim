@@ -1,6 +1,5 @@
 package edu.attractor.onlineshop.dto;
 
-import edu.attractor.onlineshop.entity.Laptop;
 import edu.attractor.onlineshop.entity.Tablet;
 import lombok.*;
 

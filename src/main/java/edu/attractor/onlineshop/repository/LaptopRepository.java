@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface LaptopRepository extends JpaRepository<Laptop, Integer> {
 
     @Query("select l from Laptop l")
-    Slice<Laptop> getAllLaptops(Pageable pageable);
+    Optional<Slice<Laptop>> getAllLaptops(Pageable pageable);
 
     Optional<Laptop> findById(Integer commentId);
 }

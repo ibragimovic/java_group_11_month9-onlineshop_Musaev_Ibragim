@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface PhoneRepository extends JpaRepository<Phone, Integer> {
 
     @Query("select p from Phone p")
-    Slice<Phone> getAllPhones(Pageable pageable);
+    Optional<Slice<Phone>> getAllPhones(Pageable pageable);
 
     Optional<Phone> findById(Integer commentId);
 }

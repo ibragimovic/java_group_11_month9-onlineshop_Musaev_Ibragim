@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface TabletRepository extends JpaRepository<Tablet, Integer> {
 
     @Query("select t from Tablet t")
-    Slice<Tablet> getAllTablets(Pageable pageable);
+    Optional<Slice<Tablet>> getAllTablets(Pageable pageable);
 
     Optional<Tablet> findById(Integer commentId);
 }
