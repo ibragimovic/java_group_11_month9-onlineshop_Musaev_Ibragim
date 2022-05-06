@@ -25,6 +25,9 @@ public class Phone {
     @Column(name = "image")
     private String image;
 
+    @Column(name = "quantity")
+    private Integer quantity;
+
     @Column(name = "description")
     private String description;
 
