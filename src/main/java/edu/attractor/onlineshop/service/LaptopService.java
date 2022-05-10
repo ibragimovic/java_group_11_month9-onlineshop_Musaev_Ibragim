@@ -1,7 +1,6 @@
 package edu.attractor.onlineshop.service;
 
 import edu.attractor.onlineshop.dto.LaptopDTO;
-import edu.attractor.onlineshop.exception.ResourceNotFoundException;
 import edu.attractor.onlineshop.repository.LaptopRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

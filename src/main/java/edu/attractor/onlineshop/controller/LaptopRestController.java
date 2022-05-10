@@ -1,7 +1,6 @@
 package edu.attractor.onlineshop.controller;
 
 import edu.attractor.onlineshop.dto.LaptopDTO;
-import edu.attractor.onlineshop.exception.ResourceNotFoundException;
 import edu.attractor.onlineshop.service.LaptopService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

@@ -6,7 +6,6 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import javax.persistence.NamedQuery;
 import java.util.Optional;
 
 public interface LaptopRepository extends JpaRepository<Laptop, Integer> {
