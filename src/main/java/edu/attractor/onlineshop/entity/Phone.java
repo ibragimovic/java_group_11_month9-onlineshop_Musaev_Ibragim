@@ -5,7 +5,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "phones")
-
 public class Phone extends Gadget{
 
 }

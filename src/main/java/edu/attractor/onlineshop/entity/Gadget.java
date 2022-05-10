@@ -3,6 +3,10 @@ package edu.attractor.onlineshop.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 
 @Getter
 @Setter
@@ -15,18 +19,25 @@ public class Gadget {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @NotBlank
+    @Size(min = 1, max = 128)
+    @Column(length = 128, name = "name")
     private String name;
 
-    @Column(name = "image")
+    @NotBlank
+    @Size(min = 1, max = 128)
+    @Column(length = 128, name = "image")
     private String image;
 
     @Column(name = "quantity")
     private Integer quantity;
 
-    @Column(name = "description")
+    @NotBlank
+    @Size(min = 1, max = 128)
+    @Column(length = 128, name = "description")
     private String description;
 
+    @Positive
     @Column(name = "price")
     private Float price;
 }
