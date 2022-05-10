@@ -8,12 +8,12 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class PhoneDTO {
-    private Integer id;
+    private Long id;
     private String name;
     private String image;
     private Integer quantity;
     private String description;
-    private Integer price;
+    private Float price;
 
     public static PhoneDTO from(Phone phone) {
         return builder()
