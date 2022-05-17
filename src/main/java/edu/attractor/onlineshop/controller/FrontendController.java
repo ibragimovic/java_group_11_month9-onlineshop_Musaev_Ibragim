@@ -1,5 +1,6 @@
-package edu.attractor.onlineshop.frontend;
+package edu.attractor.onlineshop.controller;
 
+import edu.attractor.onlineshop.service.PropertiesService;
 import edu.attractor.onlineshop.service.LaptopService;
 import edu.attractor.onlineshop.service.PhoneService;
 import edu.attractor.onlineshop.service.TabletService;

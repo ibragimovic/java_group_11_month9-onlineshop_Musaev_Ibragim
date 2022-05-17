@@ -1,4 +1,4 @@
-package edu.attractor.onlineshop.frontend;
+package edu.attractor.onlineshop.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;

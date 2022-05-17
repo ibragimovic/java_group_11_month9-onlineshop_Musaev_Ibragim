@@ -1,7 +1,9 @@
-create table customers (
-     id bigserial not null,
-     email varchar(128) not null,
-     password varchar(128) not null,
-     full_name varchar(128) not null,
-     primary key (id)
+CREATE TABLE users (
+       id SERIAL NOT NULL,
+       email varchar(128) NOT NULL UNIQUE,
+       password varchar(128) NOT NULL,
+       fullname varchar(128) NOT NULL,
+       enabled boolean NOT NULL,
+       role varchar(16) NOT NULL,
+       PRIMARY KEY (id)
 );

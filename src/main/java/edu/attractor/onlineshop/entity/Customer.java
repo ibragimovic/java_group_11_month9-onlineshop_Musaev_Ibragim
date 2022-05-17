@@ -1,21 +1,23 @@
 package edu.attractor.onlineshop.entity;
 
-import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Collection;
-import java.util.List;
+import java.util.Objects;
 
-@Data
-@Table(name = "customers")
+@Getter
+@Setter
+@ToString
+@Table(name = "users")
 @Entity
-public class Customer implements UserDetails {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,36 +35,30 @@ public class Customer implements UserDetails {
 
     @NotBlank
     @Size(min = 1, max = 128)
-    @Column(name = "full_name", length = 128)
+    @Column(length = 128)
     private String fullName;
 
+    @Column
+    @Builder.Default
+    private boolean enabled = true;
+
+    @NotBlank
+    @Size(min = 1, max = 128)
+    @Column(length = 128)
+    @Builder.Default
+    private String role = "USER";
+
+
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("FULL"));
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Customer customer = (Customer) o;
+        return id != null && Objects.equals(id, customer.id);
     }
 
     @Override
-    public String getUsername() {
-        return getEmail();
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }
