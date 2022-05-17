@@ -6,7 +6,19 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "file-storage")
+@ConfigurationProperties(prefix = "file-store")
 public class FileStorageConfigurator {
-    private String basePath;
+    private String BasePath;
+
+    public FileStorageConfigurator() {
+        BasePath = "product_images";
+    }
+
+    public String getPath() {
+        return BasePath;
+    }
+
+    public void setPath(String path) {
+        this.BasePath = path;
+    }
 }

@@ -20,6 +20,15 @@
         <#list styles as styleSource>
             <link rel="stylesheet" href="${styleSource}">
         </#list>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+                integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
+        </script>
+
     </head>
     <body>
 
@@ -45,6 +54,39 @@
     </#list>
 
     </body>
+
+    <script>
+        async function postData(url = '', data = {}) {
+            const response = await fetch(url, {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                redirect: 'follow',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+            });
+            return await response.json(); // parses JSON response into native JavaScript objects
+        }
+
+        function setNewImage(idElement, fileName){
+            document.getElementById(idElement)['src'] = '/images/'+fileName;
+        }
+
+        function sendResult(idElement, fileName){
+            let path = 'http://localhost:8080/' + fileName;
+            console.log(path)
+            postData(path)
+                .then((data) => {
+                    console.log(data); // JSON data parsed by `response.json()` call
+                    // setNewImage('lImage', data.lImageFile);
+                    setNewImage(idElement, fileName);
+                });
+        }
+    </script>
+
+
     </html>
 
 </#macro>

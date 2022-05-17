@@ -1,14 +1,19 @@
 package edu.attractor.onlineshop.controller;
 
+import edu.attractor.onlineshop.dto.GadgetDTO;
 import edu.attractor.onlineshop.service.PropertiesService;
 import edu.attractor.onlineshop.service.LaptopService;
 import edu.attractor.onlineshop.service.PhoneService;
 import edu.attractor.onlineshop.service.TabletService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping
@@ -41,12 +46,17 @@ public class FrontendController {
         return String.format("%s?page=%s&size=%s", uri, page, size);
     }
 
-//    @GetMapping
-//    public String index(Model model, Pageable pageable, HttpServletRequest uriBuilder) {
-//        var laptops = laptopService.showVarietyOfLaptops(pageable).getBody().getContent();
-//        var uri = uriBuilder.getRequestURI();
-//        constructPageable(laptops, propertiesService.getDefaultPageSize(), model, uri);
-//
-//        return "index";
-//    }
+    @GetMapping
+    public String index(Model model, Pageable pageable, HttpServletRequest uriBuilder) {
+        var uri = uriBuilder.getRequestURI();
+        var laptops = laptopService.showVarietyOfLaptops(pageable);
+        var phones = phoneService.showVarietyOfPhones(pageable);
+        var tablets = tabletService.showVarietyOfTablets(pageable);
+
+        constructPageable(laptops, propertiesService.getDefaultPageSize(), model, uri);
+//        constructPageable(phones, propertiesService.getDefaultPageSize(), model, uri);
+//        constructPageable(tablets, propertiesService.getDefaultPageSize(), model, uri);
+
+        return "products";
+    }
 }

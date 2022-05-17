@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "name": "file-store.BasePath",
+      "type": "java.lang.String",
+      "description": "Description for file-store.path."
+    },
+    {
+      "name": "file-store.BasePath",
+      "type": "java.lang.String",
+      "description": "Description for file-store.path."
+    },
+    {
+      "name": "file-store.path",
+      "type": "java.lang.String",
+      "description": "Description for file-store.path."
+    },
+    {
+      "name": "file-store.path",
+      "type": "java.lang.String",
+      "description": "Description for file-store.path."
+    }
+  ] }

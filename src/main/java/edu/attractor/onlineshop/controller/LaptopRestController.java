@@ -4,6 +4,7 @@ import edu.attractor.onlineshop.dto.LaptopDTO;
 import edu.attractor.onlineshop.service.LaptopService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +22,10 @@ import static java.util.stream.Collectors.toList;
 public class LaptopRestController {
     private final LaptopService laptopService;
 
-    @GetMapping
-    public ResponseEntity<Slice<LaptopDTO>> getLaptops(Pageable pageable){
-        return laptopService.showVarietyOfLaptops(pageable);
-    }
+//    @GetMapping
+//    public Page<LaptopDTO>> getLaptops(Pageable pageable){
+//        return laptopService.showVarietyOfLaptops(pageable);
+//    }
 
 
     @ExceptionHandler(BindException.class)
@@ -38,3 +39,4 @@ public class LaptopRestController {
     }
 
 }
+

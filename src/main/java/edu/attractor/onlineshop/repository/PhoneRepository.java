@@ -1,6 +1,7 @@
 package edu.attractor.onlineshop.repository;
 
 import edu.attractor.onlineshop.entity.Phone;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,7 +12,7 @@ import java.util.Optional;
 public interface PhoneRepository extends JpaRepository<Phone, Integer> {
 
     @Query("select p from Phone p")
-    Optional<Slice<Phone>> getAllPhones(Pageable pageable);
+    Page<Phone> getAllPhones(Pageable pageable);
 
-    Optional<Phone> findById(Integer commentId);
+    Optional<Phone> findById(Long commentId);
 }

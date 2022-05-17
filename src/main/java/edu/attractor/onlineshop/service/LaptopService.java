@@ -3,6 +3,7 @@ package edu.attractor.onlineshop.service;
 import edu.attractor.onlineshop.dto.LaptopDTO;
 import edu.attractor.onlineshop.repository.LaptopRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +14,9 @@ import org.springframework.stereotype.Service;
 public class LaptopService {
     private final LaptopRepository laptopRepository;
 
-    public ResponseEntity<Slice<LaptopDTO>> showVarietyOfLaptops(Pageable pageable) {
-        var laptops = laptopRepository.getAllLaptops(pageable);
-
-        laptops.ifPresent(laptopSlice -> ResponseEntity.ok(laptopSlice.map(LaptopDTO::from)));
-        return ResponseEntity.notFound().build();
+    public Page<LaptopDTO> showVarietyOfLaptops(Pageable pageable) {
+        return laptopRepository.getAllLaptops(pageable)
+                .map(LaptopDTO::from);
     }
 
 }
