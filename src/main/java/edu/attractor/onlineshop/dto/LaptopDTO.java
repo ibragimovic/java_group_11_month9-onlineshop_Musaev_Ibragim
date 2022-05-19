@@ -7,7 +7,7 @@ import lombok.*;
 @Builder(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class LaptopDTO implements GadgetDTO{
+public class LaptopDTO {
     private Long id;
     private String name;
     private String image;

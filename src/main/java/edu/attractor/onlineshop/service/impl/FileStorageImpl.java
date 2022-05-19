@@ -32,8 +32,7 @@ public class FileStorageImpl implements FileStorage {
 
     @Override
     public InputStream get(String identity) throws FileNotFoundException {
-        FileInputStream fileInputStream = new FileInputStream(getFullPath(identity));
-        return fileInputStream;
+        return new FileInputStream(getFullPath(identity));
     }
 
     private String generateKey(){

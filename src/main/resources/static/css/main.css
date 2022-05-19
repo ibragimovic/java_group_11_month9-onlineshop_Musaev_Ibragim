@@ -1,0 +1,142 @@
+
+:root {
+    /* Color */
+    --gradient: linear-gradient(-100deg,
+    #405DE6 0.01%,
+    #833AB4 21.88%,
+    #C13584 47.92%,
+    #E1306C 67.71%,
+    #FD1D1D 84.38%);
+    --bg: #0B0E27;
+    --pimary: white;
+    --accent: #0B6AF9;
+    --default: #A4A4A4;
+
+    --stat_bg: rgba(255, 255, 255, 0.1);
+    --search_bg: rgba(150, 150, 255, 0.2);
+    --active_menu_bg: rgba(150, 150, 255, 0.1);
+}
+
+body {
+    font-family: 'Sarala', sans-serif;
+    min-height: 100vh;
+    color: var(--pimary);
+    background-color: var(--bg);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* Border Gradient */
+.gradient {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 10px;
+    border-radius: 500px;
+    background-color: var(--bg);
+}
+
+.gradient>img {
+    border-radius: 500px;
+}
+
+.gradient::before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    background: var(--gradient);
+}
+
+/* Layout */
+
+
+.content {
+    display: flex;
+    background-color: var(--bg);
+}
+.figure-img {
+    width: 378px;
+    height: 570px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.sidebar {
+    position: relative;
+    max-width: 452px;
+    margin-right: 20px;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    flex-grow: 1;
+    padding-right: 56px;
+}
+
+
+/* Sidebar */
+.sidebar__fixed {
+    position: sticky;
+    top: 0;
+}
+
+/* Menu */
+.menu__item {
+    display: flex;
+    align-items: center;
+    padding: 16px 62px;
+    border-radius: 10px;
+    color: var(--pimary);
+    text-decoration: none;
+    font-size: 35px;
+}
+
+.menu__item:not(:last-child) {
+    margin-top: 22px;
+}
+
+.menu__item i {
+    font-size: 1.6em;
+    margin-right: 78px;
+}
+
+.menu__item:hover,
+.menu_item_active {
+    position: relative;
+    background-color: var(--active_menu_bg);
+}
+
+.menu__item:hover::after,
+.menu_item_active::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 12px;
+    border-radius: 10px;
+    background: var(--gradient);
+}
+.flex .flex-wrap {
+    display: flex;
+    position: relative;
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}

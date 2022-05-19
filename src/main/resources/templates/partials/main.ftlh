@@ -1,7 +1,3 @@
-<#--
- объявляем макро-функцию используя которую мы создадим шаблон страницы
- https://freemarker.apache.org/docs/dgui_misc_userdefdir.html
- -->
 <#macro renderWith title="Welcome to Online Shop!" scripts=[] styles=[]>
     <!doctype html>
     <html lang="en">
@@ -30,63 +26,79 @@
         </script>
 
     </head>
+
     <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Aruuzone online shop</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <#--
-    например если бы у нашего сайта было какое-то верхнее меню,
-    то мы могли бы его тут указать
-    и оно появится сразу на всех страницах которые используют
-    этот шаблон
-    -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/register">Register</a>
+                            <a class="dropdown-item" href="/login">Login</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Disabled</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+        <div class="wrapper">
+            <div class="content">
+                <div class="sidebar">
+                    <div class="sidebar__fixed">
+                        <nav class="menu">
+                            <a href="/" class="menu__item menu_item_active">
+                                <span>Home</span>
+                            </a>
+                            <a href="/laptops" class="menu__item">
+                                <span>Laptops</span>
+                            </a>
+                            <a href="/tablets" class="menu__item">
+                                <span>Tablets</span>
+                            </a>
+                            <a href="/phones" class="menu__item">
+                                <span>Phones</span>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+                <main class="main">
+                    <section>
+                        <div class="posts" id="myPosts">
+                            <div class="container">
+                                <#nested>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
 
-    <div class="container">
-        <#--
-         элемент nested указывает что в этом место
-         будет подставлено некоторое содержимое,
-         которое передаётся как тело макро-функции при её вызове
-        -->
-        <#nested>
-
-    </div>
-
-    <#list scripts as scriptSource>
-        <script src="${scriptSource}"></script>
-    </#list>
+        <#list scripts as scriptSource>
+            <script src="${scriptSource}"></script>
+        </#list>
 
     </body>
-
-    <script>
-        async function postData(url = '', data = {}) {
-            const response = await fetch(url, {
-                method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                mode: 'cors', // no-cors, *cors, same-origin
-                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                redirect: 'follow',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data) // body data type must match "Content-Type" header
-            });
-            return await response.json(); // parses JSON response into native JavaScript objects
-        }
-
-        function setNewImage(idElement, fileName){
-            document.getElementById(idElement)['src'] = '/images/'+fileName;
-        }
-
-        function sendResult(idElement, fileName){
-            let path = 'http://localhost:8080/' + fileName;
-            console.log(path)
-            postData(path)
-                .then((data) => {
-                    console.log(data); // JSON data parsed by `response.json()` call
-                    // setNewImage('lImage', data.lImageFile);
-                    setNewImage(idElement, fileName);
-                });
-        }
-    </script>
-
-
     </html>
-
 </#macro>

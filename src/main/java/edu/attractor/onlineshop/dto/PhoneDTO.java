@@ -7,7 +7,7 @@ import lombok.*;
 @Builder(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class PhoneDTO implements GadgetDTO{
+public class PhoneDTO{
     private Long id;
     private String name;
     private String image;
@@ -24,5 +24,29 @@ public class PhoneDTO implements GadgetDTO{
                 .description(phone.getDescription())
                 .price(phone.getPrice())
                 .build();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Float getPrice() {
+        return price;
     }
 }

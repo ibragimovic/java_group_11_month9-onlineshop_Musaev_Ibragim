@@ -1,6 +1,5 @@
 package edu.attractor.onlineshop.controller;
 
-import edu.attractor.onlineshop.dto.GadgetDTO;
 import edu.attractor.onlineshop.service.PropertiesService;
 import edu.attractor.onlineshop.service.LaptopService;
 import edu.attractor.onlineshop.service.PhoneService;
@@ -18,12 +17,42 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping
 @AllArgsConstructor
-public class FrontendController {
+public class ProductController {
     private final LaptopService laptopService;
     private final PhoneService phoneService;
     private final TabletService tabletService;
 
     private final PropertiesService propertiesService;
+
+    @GetMapping
+    public String products(Model model) {
+        model.addAttribute("images", "images");
+        return "products";
+    }
+
+    @GetMapping("/laptops")
+    public String getLaptops(Model model, Pageable pageable, HttpServletRequest uriBuilder) {
+        var uri = uriBuilder.getRequestURI();
+        var laptops = laptopService.showVarietyOfLaptops(pageable);
+        constructPageable(laptops, propertiesService.getDefaultPageSize(), model, uri);
+        return "gadgets";
+    }
+
+    @GetMapping("/tablets")
+    public String getTablets(Model model, Pageable pageable, HttpServletRequest uriBuilder) {
+        var uri = uriBuilder.getRequestURI();
+        var tablets = tabletService.showVarietyOfTablets(pageable);
+        constructPageable(tablets, propertiesService.getDefaultPageSize(), model, uri);
+        return "gadgets";
+    }
+
+    @GetMapping("/phones")
+    public String getPhones(Model model, Pageable pageable, HttpServletRequest uriBuilder) {
+        var uri = uriBuilder.getRequestURI();
+        var phones = phoneService.showVarietyOfPhones(pageable);
+        constructPageable(phones, propertiesService.getDefaultPageSize(), model, uri);
+        return "gadgets";
+    }
 
     private static  <T> void constructPageable(Page<T> list, int pageSize, Model model, String uri) {
         if (list.hasNext()) {
@@ -44,19 +73,5 @@ public class FrontendController {
 
     private static String constructPageUri(String uri, int page, int size) {
         return String.format("%s?page=%s&size=%s", uri, page, size);
-    }
-
-    @GetMapping
-    public String index(Model model, Pageable pageable, HttpServletRequest uriBuilder) {
-        var uri = uriBuilder.getRequestURI();
-        var laptops = laptopService.showVarietyOfLaptops(pageable);
-        var phones = phoneService.showVarietyOfPhones(pageable);
-        var tablets = tabletService.showVarietyOfTablets(pageable);
-
-        constructPageable(laptops, propertiesService.getDefaultPageSize(), model, uri);
-//        constructPageable(phones, propertiesService.getDefaultPageSize(), model, uri);
-//        constructPageable(tablets, propertiesService.getDefaultPageSize(), model, uri);
-
-        return "products";
     }
 }
