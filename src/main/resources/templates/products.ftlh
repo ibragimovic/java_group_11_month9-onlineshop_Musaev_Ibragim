@@ -3,9 +3,9 @@
 <@main.renderWith scripts=["/main.js"]>
 
   <br>
-  <h2>Choose our products </h2>
+  <div class="title product"><h3>Choose our products</h3></div>
 
-    <div class="content" id="itemList">
+    <div class="content flex flex-wrap" id="itemList">
         <figure class="figure">
             <a href="/laptops"><img src="/images/AppleIMAC.jpg" class="figure-img img-fluid rounded" alt="Laptops"></a>
             <figcaption class="figure-caption"><a href="/laptops">Laptops</a></figcaption>

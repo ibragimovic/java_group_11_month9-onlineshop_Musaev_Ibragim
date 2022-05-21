@@ -39,8 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true);
 
         http.authorizeRequests()
-                .antMatchers("/profile/**")
-                .authenticated();
+                .antMatchers("/profile/**").authenticated()
+                .antMatchers("/cart/**").authenticated();
 
 
         http.authorizeRequests()
@@ -60,8 +60,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 + " where email = ?";
 
         auth.jdbcAuthentication()
-                .dataSource(dataSource)
                 .usersByUsernameQuery(fetchUsersQuery)
-                .authoritiesByUsernameQuery(fetchRolesQuery);
+                .authoritiesByUsernameQuery(fetchRolesQuery)
+                .dataSource(dataSource);
     }
 }
