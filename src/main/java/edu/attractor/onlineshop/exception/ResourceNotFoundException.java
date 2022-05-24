@@ -11,10 +11,17 @@ public class ResourceNotFoundException extends RuntimeException {
 
     private String resource;
     private Long id;
+    private String name;
 
     public ResourceNotFoundException(String resource, Long id) {
         super();
         this.resource = resource;
         this.id = id;
+    }
+
+    public ResourceNotFoundException(String resource, String name) {
+        super();
+        this.resource = resource;
+        this.name = name;
     }
 }

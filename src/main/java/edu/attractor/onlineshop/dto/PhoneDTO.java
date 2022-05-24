@@ -14,6 +14,7 @@ public class PhoneDTO{
     private Integer quantity;
     private String description;
     private Float price;
+    private String gadgetType;
 
     public static PhoneDTO from(Phone phone) {
         return builder()
@@ -23,6 +24,7 @@ public class PhoneDTO{
                 .quantity(phone.getQuantity())
                 .description(phone.getDescription())
                 .price(phone.getPrice())
+                .gadgetType((GadgetType.PHONE).toString())
                 .build();
     }
 
@@ -48,5 +50,9 @@ public class PhoneDTO{
 
     public Float getPrice() {
         return price;
+    }
+
+    public String getGadgetType() {
+        return gadgetType;
     }
 }

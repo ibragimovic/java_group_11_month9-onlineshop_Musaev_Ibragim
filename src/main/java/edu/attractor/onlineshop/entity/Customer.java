@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
+
 @Getter
 @Setter
 @ToString
@@ -47,7 +48,6 @@ public class Customer {
     @Column(length = 128)
     @Builder.Default
     private String role = "USER";
-
 
     @Override
     public boolean equals(Object o) {

@@ -7,11 +7,15 @@ import edu.attractor.onlineshop.exception.CustomerAlreadyRegisteredException;
 import edu.attractor.onlineshop.exception.CustomerNotFoundException;
 import edu.attractor.onlineshop.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
+
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
@@ -38,5 +42,16 @@ public class CustomerService {
                 .orElseThrow(CustomerNotFoundException::new);
 
         return CustomerDTO.from(customer);
+    }
+
+    public Customer getByEmailCustomer (String email) {
+        return customerRepository.findByEmail(email)
+                .orElseThrow(CustomerNotFoundException::new);
+    }
+
+    public void invalidateSession(HttpSession session) {
+        if (session != null) {
+            session.invalidate();
+        }
     }
 }

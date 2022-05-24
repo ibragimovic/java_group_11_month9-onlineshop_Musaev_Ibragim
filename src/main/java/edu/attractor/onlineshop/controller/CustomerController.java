@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import java.security.Principal;
@@ -58,6 +59,12 @@ public class CustomerController {
     public String loginPage(@RequestParam(required = false, defaultValue = "false") Boolean error, Model model) {
         model.addAttribute("error", error);
         return "login";
+    }
+
+    @GetMapping("/logout")
+    public String invalidate(HttpSession session) {
+        customerService.invalidateSession(session);
+        return "redirect:/";
     }
 
     @ExceptionHandler(BindException.class)

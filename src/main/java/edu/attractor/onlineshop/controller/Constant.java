@@ -1,5 +1,5 @@
 package edu.attractor.onlineshop.controller;
 
-final class Constant {
-    static final String CART_ID = "_cart_";
+public final class Constant {
+    public static final String CART_ID = "_cart_";
 }

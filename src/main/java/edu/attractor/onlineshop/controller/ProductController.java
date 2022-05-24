@@ -1,18 +1,19 @@
 package edu.attractor.onlineshop.controller;
 
-import edu.attractor.onlineshop.service.PropertiesService;
-import edu.attractor.onlineshop.service.LaptopService;
-import edu.attractor.onlineshop.service.PhoneService;
-import edu.attractor.onlineshop.service.TabletService;
+import edu.attractor.onlineshop.entity.Cart;
+import edu.attractor.onlineshop.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping
@@ -21,6 +22,8 @@ public class ProductController {
     private final LaptopService laptopService;
     private final PhoneService phoneService;
     private final TabletService tabletService;
+    private final CartService cartService;
+    private final OrderService orderService;
 
     private final PropertiesService propertiesService;
 
@@ -52,6 +55,26 @@ public class ProductController {
         var phones = phoneService.showVarietyOfPhones(pageable);
         constructPageable(phones, propertiesService.getDefaultPageSize(), model, uri);
         return "gadgets";
+    }
+
+    @GetMapping("/cart")
+    public String cart(Model model,
+                       @SessionAttribute(name = Constant.CART_ID, required = false) List<String> cart,
+                       Authentication authentication,
+                       Pageable pageable,
+                       HttpServletRequest uriBuilder) {
+        if (cart != null) {
+            model.addAttribute("cartItems", cart);
+
+        }
+        Cart cartFromDB = cartService.findCartByCustomerEmail(authentication.getName());
+        if (orderService.isCartHasOrdersByCartId(cartFromDB.getId())) {
+            var cartsItems = orderService.getOrdersByCartId(cartFromDB.getId(), pageable);
+            var uri = uriBuilder.getRequestURI();
+            constructPageable(cartsItems, propertiesService.getDefaultPageSize(), model, uri);
+        }
+
+        return "cart";
     }
 
     private static  <T> void constructPageable(Page<T> list, int pageSize, Model model, String uri) {

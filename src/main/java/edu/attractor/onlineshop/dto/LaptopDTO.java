@@ -14,6 +14,7 @@ public class LaptopDTO {
     private Integer quantity;
     private String description;
     private Float price;
+    private String gadgetType;
 
     public static LaptopDTO from(Laptop laptop) {
         return builder()
@@ -23,6 +24,35 @@ public class LaptopDTO {
                 .quantity(laptop.getQuantity())
                 .description(laptop.getDescription())
                 .price(laptop.getPrice())
+                .gadgetType((GadgetType.LAPTOP).toString())
                 .build();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public String getGadgetType() {
+        return gadgetType;
     }
 }

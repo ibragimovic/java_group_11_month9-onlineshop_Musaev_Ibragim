@@ -1,6 +1,7 @@
 package edu.attractor.onlineshop.service;
 
 import edu.attractor.onlineshop.dto.LaptopDTO;
+import edu.attractor.onlineshop.exception.ResourceNotFoundException;
 import edu.attractor.onlineshop.repository.LaptopRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -17,10 +18,9 @@ public class LaptopService {
                 .map(LaptopDTO::from);
     }
 
-//    public Page<GadgetDTO> convertToGadgetDTO(Pageable pageable) {
-//        var t = laptopRepository.getAllLaptops(pageable).getContent()
-//                .stream()
-//                .map()
-//    }
-
+    public LaptopDTO getLaptopDTOByName(String name) {
+        var gadget = laptopRepository.findByName(name)
+                .orElseThrow(() -> new ResourceNotFoundException("phone", name));
+        return LaptopDTO.from(gadget);
+    }
 }

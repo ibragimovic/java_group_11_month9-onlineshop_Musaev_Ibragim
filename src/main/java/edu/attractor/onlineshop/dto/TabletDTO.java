@@ -14,6 +14,7 @@ public class TabletDTO{
     private Integer quantity;
     private String description;
     private Float price;
+    private String gadgetType;
 
     public static TabletDTO from(Tablet tablet) {
         return builder()
@@ -23,6 +24,35 @@ public class TabletDTO{
                 .quantity(tablet.getQuantity())
                 .description(tablet.getDescription())
                 .price(tablet.getPrice())
+                .gadgetType((GadgetType.TABLET).toString())
                 .build();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public String getGadgetType() {
+        return gadgetType;
     }
 }
