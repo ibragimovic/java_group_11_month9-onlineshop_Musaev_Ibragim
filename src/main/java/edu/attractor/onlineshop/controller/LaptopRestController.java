@@ -17,12 +17,6 @@ import static java.util.stream.Collectors.toList;
 public class LaptopRestController {
     private final LaptopService laptopService;
 
-//    @GetMapping
-//    public Page<LaptopDTO>> getLaptops(Pageable pageable){
-//        return laptopService.showVarietyOfLaptops(pageable);
-//    }
-
-
     @ExceptionHandler(BindException.class)
     private ResponseEntity<Object> handleBindExceptionResponseEntity(BindException ex) {
         var apiFieldErrors = ex.getFieldErrors()

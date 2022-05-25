@@ -1,42 +1,43 @@
 <#import "partials/main.ftlh" as main />
 
 <@main.renderWith scripts=["/main.js"]>
-<#--    <div class="container">-->
-<#--        <h1>Ваша корзина</h1>-->
-<#--        <#if cartItems??>-->
-<#--            <#list cartItems as item>-->
-<#--                <p>${item}</p>-->
-<#--            </#list>-->
-<#--            <form action="/cart/empty" method="post">-->
-<#--                <button>Очистить корзину</button>-->
-<#--            </form>-->
-<#--        <#else>-->
-<#--            <p>тут ничего нет!</p>-->
-<#--        </#if>-->
-<#--        <div>-->
-<#--            <a href="/">назад</a>-->
-<#--        </div>-->
-<#--    </div>-->
-
-    <div class="content flex flex-wrap" id="itemList">
+    <div>
         <#if item??>
             <#list item as listItem>
-                <figcaption class="figure-caption"><h4>${listItem.name}</h4></figcaption>
-                <figcaption class="figure-caption"><h4>${listItem.price} USD</h4></figcaption>
-
-<#--                <figure class="figure">-->
-<#--                    <img src="/images/${listItem.image}" alt="${listItem.name}">-->
-<#--                    <figcaption class="figure-caption"><h4>${listItem.name}</h4></figcaption>-->
-<#--                    <figcaption class="figure-caption"><h4>${listItem.price} USD</h4></figcaption>-->
-<#--                    <hr>-->
-<#--                </figure>-->
+            <table class="table table-striped table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>${listItem.gadgetType}</td>
+                    <td>${listItem.gadgetName}</td>
+                    <td>
+                        <form action="/cart/delete" method="post">
+                            <#if _csrf??>
+                                <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+                            </#if>
+                            <div>
+                                <input type="hidden" name="type" id="type" value="${listItem.gadgetType}">
+                                <input type="hidden" name="name" id="name" value="${listItem.gadgetName}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
             </#list>
-            <form action="/cart/empty" method="post">
-                <button>Clear the cart</button>
-            </form>
-
+            <div>
+                <form action="/cart/empty" method="post">
+                    <button type="button" class="btn btn-danger">Clear the cart</button>
+                </form>
+            </div>
             <#include "partials/pagination.ftlh">
-
         <#else>
             <p>Nothing in here!</p>
         </#if>

@@ -24,9 +24,6 @@ public class CartService {
     private final TabletService tabletService;
     private final CustomerService customerService;
 
-//TODO by name and type -> create Order (adding cartId) and add to dataBase
-
-
     public Order updateCart(String customerEmail, String type, String name) {
         Cart cart = findCartByCustomerEmail(customerEmail);
         Order order = Order.builder()

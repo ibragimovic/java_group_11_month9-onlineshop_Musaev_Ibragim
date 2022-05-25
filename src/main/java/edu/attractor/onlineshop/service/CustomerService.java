@@ -6,7 +6,6 @@ import edu.attractor.onlineshop.entity.Customer;
 import edu.attractor.onlineshop.exception.CustomerAlreadyRegisteredException;
 import edu.attractor.onlineshop.exception.CustomerNotFoundException;
 import edu.attractor.onlineshop.repository.CustomerRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final PasswordEncoder encoder;
 
-    public CustomerDTO register(CustomerRegisterForm form) {
+    public void register(CustomerRegisterForm form) {
         if (customerRepository.existsByEmail(form.getEmail())) {
             throw new CustomerAlreadyRegisteredException();
         }
@@ -34,7 +33,7 @@ public class CustomerService {
 
         customerRepository.save(customer);
 
-        return CustomerDTO.from(customer);
+        CustomerDTO.from(customer);
     }
 
     public CustomerDTO getByEmail (String email) {

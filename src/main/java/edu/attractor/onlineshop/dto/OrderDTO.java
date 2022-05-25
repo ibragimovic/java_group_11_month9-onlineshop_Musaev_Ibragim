@@ -1,8 +1,10 @@
 package edu.attractor.onlineshop.dto;
 
-import edu.attractor.onlineshop.entity.Cart;
 import edu.attractor.onlineshop.entity.Order;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 @Builder(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
