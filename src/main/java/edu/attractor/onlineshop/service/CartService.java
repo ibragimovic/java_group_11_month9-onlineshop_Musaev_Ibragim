@@ -57,7 +57,7 @@ public class CartService {
     }
 
     public void deleteCart(Long cartId) {
-        if (cartRepository.existsById(cartId)) {
+        if (!cartRepository.existsById(cartId)) {
             throw new ResourceNotFoundException("cart", cartId);
         }
         cartRepository.deleteById(cartId);

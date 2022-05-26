@@ -34,7 +34,18 @@
             </#list>
             <div>
                 <form action="/cart/empty" method="post">
-                    <button type="button" class="btn btn-danger">Clear the cart</button>
+                    <#if _csrf??>
+                        <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+                    </#if>
+                    <button type="submit" class="btn btn-danger">Clear the cart</button>
+                </form>
+            </div>
+            <div>
+                <form action="/cart/make-order" method="post">
+                    <#if _csrf??>
+                        <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+                    </#if>
+                    <button type="submit" class="btn btn-success">Make an order</button>
                 </form>
             </div>
             <#include "partials/pagination.ftlh">

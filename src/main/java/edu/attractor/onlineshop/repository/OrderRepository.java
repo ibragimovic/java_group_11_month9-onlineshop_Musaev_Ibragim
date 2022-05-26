@@ -17,4 +17,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     Page<Order> getByCartId (Long cartId, Pageable pageable);
 
     boolean existsByCartId(Long cartId);
+
+    void deleteAllByCartId(Long cartId);
 }
