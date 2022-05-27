@@ -20,6 +20,10 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final PasswordEncoder encoder;
 
+    public void save(Customer customer){
+        customerRepository.save(customer);
+    }
+
     public void register(CustomerRegisterForm form) {
         if (customerRepository.existsByEmail(form.getEmail())) {
             throw new CustomerAlreadyRegisteredException();

@@ -84,7 +84,7 @@ public class ProductController {
         }
 
         if (list.hasPrevious()) {
-            model.addAttribute("PrevPageLink",
+            model.addAttribute("prevPageLink",
                     constructPageUri(uri, list.previousPageable().getPageNumber(), list.previousPageable().getPageSize()));
         }
 

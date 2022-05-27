@@ -13,15 +13,20 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@Table(name = "users")
+@Table(name = "restore")
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
-public class Customer {
+public class RestoreCustomerInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
+    @Size(min = 1, max = 128)
+    @Column(length = 128)
+    private String hash;
 
     @Email
     @NotBlank
@@ -29,31 +34,11 @@ public class Customer {
     @Column(length = 128)
     private String email;
 
-    @NotBlank
-    @Size(min = 8, max = 128)
-    @Column(length = 128)
-    private String password;
-
-    @NotBlank
-    @Size(min = 1, max = 128)
-    @Column(name = "fullname", length = 128)
-    private String fullName;
-
-    @Column
-    @Builder.Default
-    private boolean enabled = true;
-
-    @NotBlank
-    @Size(min = 1, max = 128)
-    @Column(length = 128)
-    @Builder.Default
-    private String role = "USER";
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Customer customer = (Customer) o;
+        RestoreCustomerInfo customer = (RestoreCustomerInfo) o;
         return id != null && Objects.equals(id, customer.id);
     }
 

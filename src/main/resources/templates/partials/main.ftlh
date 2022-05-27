@@ -39,8 +39,8 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="/cart">Cart<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/profile">Profile<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -53,8 +53,8 @@
                             <a class="dropdown-item" href="/logout">Logout</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/customer/restore-password">Restore password<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
