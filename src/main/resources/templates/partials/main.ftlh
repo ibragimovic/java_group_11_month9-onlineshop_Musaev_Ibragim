@@ -89,6 +89,7 @@
                             <div class="container">
                                 <#nested>
                             </div>
+                            <a href="/feedback"><span></span>Feedback</a>
                         </div>
                     </section>
                 </main>

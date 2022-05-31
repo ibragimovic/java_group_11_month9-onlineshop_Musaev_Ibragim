@@ -67,12 +67,16 @@ public class ProductController {
             model.addAttribute("cartItems", cart);
 
         }
-        Cart cartFromDB = cartService.findCartByCustomerEmail(authentication.getName());
-        if (orderService.isCartHasOrdersByCartId(cartFromDB.getId())) {
-            var cartsItems = orderService.getOrdersByCartId(cartFromDB.getId(), pageable);
-            var uri = uriBuilder.getRequestURI();
-            constructPageable(cartsItems, propertiesService.getDefaultPageSize(), model, uri);
+        String customerEmail = authentication.getName();
+        if (!cartService.isCustomerHasCart(customerEmail)) {
+            cartService.createNewCart(customerEmail);
         }
+        Cart cartFromDB = cartService.findCartByCustomerEmail(authentication.getName());
+
+        var cartsItems = orderService.getOrdersByCartId(cartFromDB.getId(), pageable);
+        var uri = uriBuilder.getRequestURI();
+        constructPageable(cartsItems, propertiesService.getDefaultPageSize(), model, uri);
+
 
         return "cart";
     }

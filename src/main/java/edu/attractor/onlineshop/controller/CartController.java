@@ -50,6 +50,7 @@ public class CartController {
     public String confirmOrder(@RequestParam("price") String price,
                                @RequestParam("address") String address,
                                @RequestParam("phone") String phone,
+                               Authentication authentication,
                                Model model) {
         ContactDTO contactDTO = ContactDTO.builder()
                 .address(address)
@@ -57,6 +58,7 @@ public class CartController {
                 .phone(phone)
                 .build();
         model.addAttribute("contact", contactDTO);
+        model.addAttribute("email", authentication.getName());
         return "order_success";
     }
 }
