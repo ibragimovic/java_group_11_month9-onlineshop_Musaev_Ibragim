@@ -7,4 +7,5 @@ import javax.persistence.Table;
 @Table(name = "tablets")
 public class Tablet extends Gadget{
 
+
 }
